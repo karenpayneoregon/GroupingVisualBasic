@@ -9,7 +9,6 @@ Namespace Samples
         ''' </summary>
         ''' <remarks>
         ''' - See article for importance of understanding IGrouping
-        ''' - Must have the IDE output window open to view results
         ''' </remarks>
         Public Function GroupProductSortCategoryDescending() As List(Of GroupSortProduct)
             Dim results As IOrderedQueryable(Of GroupSortProduct)
@@ -24,8 +23,8 @@ Namespace Samples
                 results =
                         context.Products.GroupBy(Function(product) product.Category.CategoryName).
                         Select(Function(group) New GroupSortProduct With {
-                                  .CategoryName = group.Key,
-                                  .Products = group.OrderBy(Function(prod) prod.ProductName)
+                                      .CategoryName = group.Key,
+                                      .Products = group.OrderBy(Function(prod) prod.ProductName)
                                   }).
                         OrderByDescending(Function(group) group.CategoryName)
 

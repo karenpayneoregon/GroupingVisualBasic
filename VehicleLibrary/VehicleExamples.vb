@@ -39,11 +39,16 @@ Public Class VehicleExamples
 
         Dim query = (
                 From cars In carList.Vehicles()
-                Group cars By cars.Manufacturer Into manufacturerGroup = Group
-                Select New With {Key Manufacturer, Key .Count = manufacturerGroup.Count(), Key .SubGroup = (
-                From item In manufacturerGroup
-                Group item By item.Year Into yearGroup = Group
-                Select yearGroup).OrderBy(Function(iGroup) iGroup.FirstOrDefault().Year)})
+                Group cars By cars.Manufacturer Into manufacturerGroup =
+                Group Select New With
+                    {
+                        Key Manufacturer,
+                        Key .Count = manufacturerGroup.Count(),
+                        Key .SubGroup = (
+                            From item In manufacturerGroup
+                            Group item By item.Year Into yearGroup = Group
+                            Select yearGroup).
+                OrderBy(Function(iGroup) iGroup.FirstOrDefault().Year)})
 
         For Each manufacturerItem In query
 
