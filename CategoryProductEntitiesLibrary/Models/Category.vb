@@ -16,12 +16,7 @@ Namespace Models
         <Required>
         <StringLength(15)>
         Public Property CategoryName As String
-
-        <Column(TypeName:="ntext")>
         Public Property Description As String
-
-        <Column(TypeName:="image")>
-        Public Property Picture As Byte()
 
         Public Overridable Property Products As ICollection(Of Product)
     End Class
