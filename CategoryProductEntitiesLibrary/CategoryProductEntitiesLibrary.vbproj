@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="ContainerClasses\GroupSortProduct.vb" />
     <Compile Include="ContainerClasses\ProductByCategory.vb" />
+    <Compile Include="ContainerClasses\ProductsGroupedSummed.vb" />
     <Compile Include="Models\Category.vb" />
     <Compile Include="ProductContext.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

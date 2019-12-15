@@ -2,6 +2,30 @@
 Imports CategoryProductEntitiesLibrary.ContainerClasses
 Namespace Samples
     Public Class ProductsCategory
+        Public Function ProductsGroupedSummed() As List(Of ProductsGroupedSummed)
+            Using context As New ProductContext
+
+                Dim productsGroupedSummedResults As New List(Of ProductsGroupedSummed)
+
+                Dim categories = context.Products.GroupBy(Function(prod) prod.Category).Select(Function(prodGroup) New With {
+                                                                                          Key .Category = prodGroup.Key,
+                                                                                          Key .TotalUnitsInStock = prodGroup.Sum(Function(p) p.UnitsInStock)
+                                                                                          })
+                For Each cat In categories
+                    productsGroupedSummedResults.Add(New ProductsGroupedSummed With {
+                                           .Category = cat.Category.CategoryName,
+                                           .TotalUnitsInStock = cat.TotalUnitsInStock
+                                           })
+                Next
+
+
+                Return productsGroupedSummedResults
+
+            End Using
+
+        End Function
+
+
         ''' <summary>
         ''' Groups the elements of a sequence according to a specified key selector
         ''' function (product.Category.CategoryName) and projects the elements (Products) for each group

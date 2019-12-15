@@ -4,8 +4,9 @@ Imports CategoryProductEntitiesLibrary.Models
 Imports CategoryProductEntitiesLibrary.Samples
 
 Public Class Form1
-    Private operations As New ProductsCategory
-    Private Sub ProductCatagoryGroupSortButton_Click(sender As Object, e As EventArgs) Handles ProductCatagoryGroupSortButton.Click
+    Private ReadOnly operations As New ProductsCategory
+    Private Sub ProductCategoryGroupSortButton_Click(sender As Object, e As EventArgs) _
+        Handles ProductCategoryGroupSortButton.Click
 
         ListView1.Items.Clear()
 
@@ -21,7 +22,8 @@ Public Class Form1
         TidyupListView()
 
     End Sub
-    Private Sub GroupProductByCategoryButton_Click(sender As Object, e As EventArgs) Handles GroupProductByCategoryButton.Click
+    Private Sub GroupProductByCategoryButton_Click(sender As Object, e As EventArgs) _
+        Handles GroupProductByCategoryButton.Click
 
         ListView1.Items.Clear()
 
@@ -45,6 +47,24 @@ Public Class Form1
         ListView1.Items(0).Selected = True
 
         ActiveControl = ListView1
+
+    End Sub
+    ''' <summary>
+    ''' Group products by category and sum total units in stock for each category
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub GroupCategorySumUnitsInStockButton_Click(sender As Object, e As EventArgs) _
+        Handles GroupCategorySumUnitsInStockButton.Click
+
+        Dim results As List(Of ProductsGroupedSummed) = operations.ProductsGroupedSummed()
+
+        Dim sb As New StringBuilder
+        For Each item As ProductsGroupedSummed In results
+            sb.AppendLine($"{item.Category}, {item.TotalUnitsInStock}")
+        Next
+
+        MessageBox.Show(sb.ToString())
 
     End Sub
 End Class
