@@ -24,7 +24,8 @@ Public Class DuplicateFinder
                 Key .ContactTitle = dataRow.Field(Of String)("ContactTitle"),
                 Key .Street = dataRow.Field(Of String)("Address"),
                 Key .City = dataRow.Field(Of String)("City"),
-                Key .PostalCode = dataRow.Field(Of String)("PostalCode")} Group temp = item By Key = New With {
+                Key .PostalCode = dataRow.Field(Of String)("PostalCode")}
+                         Group temp = item By Key = New With {
                     Key .CompanyName = item.CompanyName,
                     Key .ContactName = item.ContactName,
                     Key .ContactTitle = item.ContactTitle} Into Group
@@ -72,7 +73,8 @@ Public Class DuplicateFinder
                 Key .ContactTitle = dataRow.Field(Of String)("ContactTitle"),
                 Key .Street = dataRow.Field(Of String)("Address"),
                 Key .City = dataRow.Field(Of String)("City"),
-                Key .PostalCode = dataRow.Field(Of String)("PostalCode")} Group temp = item By Key = New With {
+                Key .PostalCode = dataRow.Field(Of String)("PostalCode")}
+                                                                           Group temp = item By Key = New With {
                     Key .CompanyName = item.CompanyName,
                     Key .ContactName = item.ContactName,
                     Key .ContactTitle = item.ContactTitle}

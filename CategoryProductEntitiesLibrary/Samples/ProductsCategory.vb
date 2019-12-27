@@ -1,4 +1,4 @@
-﻿Imports System.Text
+﻿Imports System.Data.Entity
 Imports CategoryProductEntitiesLibrary.ContainerClasses
 Namespace Samples
     Public Class ProductsCategory
@@ -12,6 +12,7 @@ Namespace Samples
                                                                                           Key .TotalUnitsInStock = prodGroup.Sum(Function(p) p.UnitsInStock)
                                                                                           })
                 For Each cat In categories
+
                     productsGroupedSummedResults.Add(New ProductsGroupedSummed With {
                                            .Category = cat.Category.CategoryName,
                                            .TotalUnitsInStock = cat.TotalUnitsInStock
@@ -24,7 +25,6 @@ Namespace Samples
             End Using
 
         End Function
-
 
         ''' <summary>
         ''' Groups the elements of a sequence according to a specified key selector
@@ -58,6 +58,7 @@ Namespace Samples
         End Function
         ''' <summary>
         ''' This sample we are dealing with obtaining all products under a distinct category.
+        ''' See asynchronous version below
         ''' </summary>
         Public Function GroupProductByCategory() As List(Of ProductByCategory)
 
@@ -72,6 +73,27 @@ Namespace Samples
 
 
                 Return results.ToList()
+
+            End Using
+
+        End Function
+        Public Async Function GroupProductByCategoryTask() As Task(Of List(Of ProductByCategory))
+
+            Using context As New ProductContext
+
+                Dim results = Await Task.Run(
+                    Function()
+                        ' ReSharper disable once AccessToDisposedClosure
+                        Return context.Products.GroupBy(Function(prod) prod.Category).
+                                                Select(Function(group) New ProductByCategory With {
+                                                          .Category = group.Key,
+                                                          .GroupCategoryProducts = group
+                                                          }).
+                                                ToListAsync()
+                    End Function)
+
+
+                Return results
 
             End Using
 

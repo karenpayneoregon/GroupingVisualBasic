@@ -22,18 +22,20 @@ Public Class Form1
         TidyupListView()
 
     End Sub
-    Private Sub GroupProductByCategoryButton_Click(sender As Object, e As EventArgs) _
+    Private Async Sub GroupProductByCategoryButton_Click(sender As Object, e As EventArgs) _
         Handles GroupProductByCategoryButton.Click
 
         ListView1.Items.Clear()
 
-        Dim results As List(Of ProductByCategory) = operations.GroupProductByCategory()
-
+        Dim results As List(Of ProductByCategory) = Await operations.GroupProductByCategoryTask()
+        Console.WriteLine(Now)
         For Each group As ProductByCategory In results
             ListView1.Items.Add(New ListViewItem(group.Category.CategoryName))
             For Each product As Product In group.GroupCategoryProducts
                 ListView1.Items.Add(New ListViewItem(New String() {"", product.ProductName}))
             Next
+
+            Await Task.Delay(1)
         Next
 
         TidyupListView()
