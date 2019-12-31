@@ -33,5 +33,21 @@
 
 
         End Function
+        ''' <summary>
+        ''' This method groups by FirstName only
+        ''' </summary>
+        ''' <returns></returns>
+        Public Function Example3() As List(Of PersonGroup)
+            Dim personList = People.List()
+
+            Return personList.GroupBy(Function(person)
+                                          Return New With {Key person.FirstName}
+                                      End Function).Where(Function(grp) grp.Count() > 1).
+                Select(Function(grp)
+                           Return New PersonGroup With {.City = grp.Key.FirstName, .Grouping = grp.ToList()}
+                       End Function).ToList()
+
+
+        End Function
     End Class
 End Namespace
