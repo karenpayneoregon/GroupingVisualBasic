@@ -43,6 +43,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PersonLibrary", "PersonLibr
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "EmployeeGroupingSingleProperty", "EmployeeGroupingSingleProperty\EmployeeGroupingSingleProperty.vbproj", "{CF6C5FC6-46C6-4D4B-B570-308743450505}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "StudentGrouping", "StudentGrouping\StudentGrouping.vbproj", "{88EF02C5-3AEA-4ECE-A8A2-F1761679107D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{CF6C5FC6-46C6-4D4B-B570-308743450505}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF6C5FC6-46C6-4D4B-B570-308743450505}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF6C5FC6-46C6-4D4B-B570-308743450505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88EF02C5-3AEA-4ECE-A8A2-F1761679107D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88EF02C5-3AEA-4ECE-A8A2-F1761679107D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88EF02C5-3AEA-4ECE-A8A2-F1761679107D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88EF02C5-3AEA-4ECE-A8A2-F1761679107D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +125,7 @@ Global
 		{286E0E94-F0E3-44FB-8C38-A939E7219D48} = {C1605F09-8477-4BFF-9B74-F53749676DC1}
 		{8CC2B0BD-79E7-42DC-8B8E-97B7F5D2A17F} = {3978CFC9-9EEA-420F-BE12-D8B05C2B8A14}
 		{CF6C5FC6-46C6-4D4B-B570-308743450505} = {C1605F09-8477-4BFF-9B74-F53749676DC1}
+		{88EF02C5-3AEA-4ECE-A8A2-F1761679107D} = {C1605F09-8477-4BFF-9B74-F53749676DC1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A5674FB5-E9EA-40F8-93D4-5800A9AFC07A}
