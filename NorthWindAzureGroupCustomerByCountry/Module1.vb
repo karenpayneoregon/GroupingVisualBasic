@@ -27,10 +27,10 @@ Module Module1
 
             Console.WriteLine(country.CountryName & " (" & country.Count & ")" & vbCrLf)
 
-            For Each customer In country.RegionalCustomers
-                Console.WriteLine(vbTab & customer.CompanyName & " (" & customer.City & ")")
+            For Each customer In country.regionalCustomers
+                Console.WriteLine($"{customer.CustomerIdentifier,5} {customer.CompanyName} ({customer.City})")
             Next
-
+            Console.WriteLine()
         Next
 
         Console.ReadLine()
