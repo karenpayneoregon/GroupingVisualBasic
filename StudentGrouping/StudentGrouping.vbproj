@@ -87,6 +87,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="GroupingClasses\StudentGroup.vb" />
+    <Compile Include="GroupingClasses\StudentContainer.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
