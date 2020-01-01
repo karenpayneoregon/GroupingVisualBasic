@@ -55,6 +55,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NorthWindAzureSqlClient", "
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NorthWindAzureGroupCustomerByCountry", "NorthWindAzureGroupCustomerByCountry\NorthWindAzureGroupCustomerByCountry.vbproj", "{B5131D02-48D3-4864-B778-1FD315A2FF71}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GroupCharsOccurrences", "GroupCharsOccurrences\GroupCharsOccurrences.vbproj", "{2E7863CA-6263-4AD7-9874-63650EFE2336}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -137,6 +139,10 @@ Global
 		{B5131D02-48D3-4864-B778-1FD315A2FF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5131D02-48D3-4864-B778-1FD315A2FF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5131D02-48D3-4864-B778-1FD315A2FF71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E7863CA-6263-4AD7-9874-63650EFE2336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E7863CA-6263-4AD7-9874-63650EFE2336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E7863CA-6263-4AD7-9874-63650EFE2336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E7863CA-6263-4AD7-9874-63650EFE2336}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -161,6 +167,7 @@ Global
 		{0E560328-D530-4C04-B012-A7B6C9E6C13F} = {C1605F09-8477-4BFF-9B74-F53749676DC1}
 		{21A6FC44-9382-4F42-A3DD-C197EFD300ED} = {9B0E5743-FA64-4CE3-9AC1-BD76F11A6AC1}
 		{B5131D02-48D3-4864-B778-1FD315A2FF71} = {C1605F09-8477-4BFF-9B74-F53749676DC1}
+		{2E7863CA-6263-4AD7-9874-63650EFE2336} = {C1605F09-8477-4BFF-9B74-F53749676DC1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A5674FB5-E9EA-40F8-93D4-5800A9AFC07A}

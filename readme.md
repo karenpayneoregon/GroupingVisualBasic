@@ -1,6 +1,6 @@
 # Visual Basic .NET Group by examples
 
-Article location
+[Article location](https://social.technet.microsoft.com/wiki/contents/articles/53538.introduction-to-grouping-with-linqlambda-vb-net.aspx)
 
 ## Note
 - This is a work in progress, many more code samples to follow.
