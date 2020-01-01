@@ -1,0 +1,2 @@
+﻿# Base code 
+Code for examples in this project came from samples at [Microsoft document site](https://docs.microsoft.com/en-us/dotnet/csharp/linq/group-query-results) originally done in C#, translated to VB.NET.

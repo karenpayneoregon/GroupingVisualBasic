@@ -4,7 +4,6 @@ Imports StudentGrouping.GroupingClasses
 ''' <summary>
 ''' Samples taken from C# code samples @Microsoft
 ''' https://docs.microsoft.com/en-us/dotnet/csharp/linq/create-a-nested-group
-''' 
 ''' Adapted to fit into this solution
 ''' </summary>
 Module Module1
