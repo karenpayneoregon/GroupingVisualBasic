@@ -39,4 +39,25 @@ Public Class DataOperations
         Return customersList
 
     End Function
+    Public Function CustomerDataTable() As DataTable
+        Dim customerTable As New DataTable
+
+        Using cn As New SqlConnection With {.ConnectionString = ConnectionString}
+
+            Using cmd As New SqlCommand With {.Connection = cn}
+
+                cmd.CommandText =
+                    "SELECT Cust.CustomerIdentifier , Cust.CompanyName , Cust.ContactName , Cust.Country , Cust.City " &
+                    "FROM dbo.Customers AS Cust"
+
+                cn.Open()
+
+                customerTable.Load(cmd.ExecuteReader())
+
+            End Using
+        End Using
+
+        Return customerTable
+
+    End Function
 End Class

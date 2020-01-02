@@ -12,7 +12,7 @@ Module Module1
 
     Sub Main()
 
-
+        AnonymousVersion()
         Console.ReadLine()
 
     End Sub
@@ -32,26 +32,72 @@ Module Module1
 
         For Each country In customersByCountry
 
-            Console.WriteLine(country.CountryName & " (" & country.Count & ")" & vbCrLf)
+            Console.WriteLine($"{country.CountryName} ({country.Count})")
 
             For Each customer In country.regionalCustomers
                 Console.WriteLine($"{customer.CustomerIdentifier,5} {customer.CompanyName} ({customer.City})")
             Next
-
 
             Console.WriteLine()
 
         Next
 
     End Sub
+    Private Sub CustomersDataTableGrouping()
+        Dim operations = New DataOperations
+        Dim customers = operations.CustomerDataTable()
+
+        Dim baseQuery =
+                From customer In customers.AsEnumerable()
+                Order By customer.Field(Of String)("City")
+                Group By CountryName = customer.Field(Of String)("Country") Into regionalCustomers = Group, Count()
+                Order By CountryName
+
+
+        For Each country In baseQuery
+
+            Console.WriteLine($"{country.CountryName} ({country.Count})")
+
+            For Each customer In country.regionalCustomers
+
+                Console.WriteLine($"{customer.Field(Of Integer)("CustomerIdentifier"),5} " &
+                                  $"{customer.Field(Of String)("CompanyName")} " &
+                                  $"({customer.Field(Of String)("City")})")
+            Next
+
+        Next
+
+        Console.WriteLine()
+        Console.WriteLine("DataTable")
+        Console.WriteLine()
+
+        Dim customersByCountry =
+                baseQuery.Select(Function(customer) New CountryCompanyDataTableContainer With {
+                                    .CountryName = customer.CountryName,
+                                    .Customers = customer.regionalCustomers,
+                                    .Count = customer.regionalCustomers.Count()
+                                    })
+
+
+        For Each container As CountryCompanyDataTableContainer In customersByCountry
+            Console.WriteLine($"{container.CountryName} ({container.Count})")
+            For Each dataRow As DataRow In container.Customers
+                Console.WriteLine($"     {dataRow.Values()}")
+            Next
+        Next
+
+    End Sub
+
     Sub AnonymousToStrongTypedVersion()
         Dim operations = New DataOperations
         Dim customers = operations.CustomerList()
 
-        Dim baseQuery = From customer In customers Order By customer.City
-                        Group By CountryName = customer.Country Into regionalCustomers = Group Order By CountryName
+        Dim baseQuery =
+                From customer In customers Order By customer.City
+                Group By CountryName = customer.Country Into regionalCustomers = Group
+                Order By CountryName
 
-        Dim customersByCountry =
+        Dim customersByCountry As IEnumerable(Of CountryCompanyContainer) =
                 baseQuery.Select(Function(customer) New CountryCompanyContainer With {
                                     .CountryName = customer.CountryName,
                                     .Customers = customer.regionalCustomers,

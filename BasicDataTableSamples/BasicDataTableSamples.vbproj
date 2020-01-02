@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B5131D02-48D3-4864-B778-1FD315A2FF71}</ProjectGuid>
+    <ProjectGuid>{EBE6664E-3E9D-42B8-A2BD-CA4F4074B3CC}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>NorthWindAzureGroupCustomerByCountry.Module1</StartupObject>
-    <RootNamespace>NorthWindAzureGroupCustomerByCountry</RootNamespace>
-    <AssemblyName>NorthWindAzureGroupCustomerByCountry</AssemblyName>
+    <StartupObject>BasicDataTableSamples.Module1</StartupObject>
+    <RootNamespace>BasicDataTableSamples</RootNamespace>
+    <AssemblyName>BasicDataTableSamples</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Console</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -22,7 +22,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>NorthWindAzureGroupCustomerByCountry.xml</DocumentationFile>
+    <DocumentationFile>BasicDataTableSamples.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +32,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>NorthWindAzureGroupCustomerByCountry.xml</DocumentationFile>
+    <DocumentationFile>BasicDataTableSamples.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -48,9 +48,6 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BaseConnectionLibrary, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BaseConnectionLibrary.1.0.3\lib\net461\BaseConnectionLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -72,9 +69,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CountryCompanyContainer.vb" />
-    <Compile Include="Classes\CountryCompanyDataTableContainer.vb" />
-    <Compile Include="Classes\DataExtensions.vb" />
     <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -111,12 +105,11 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NorthWindAzureSqlClient\NorthWindAzureSqlClient.vbproj">
-      <Project>{21a6fc44-9382-4f42-a3dd-c197efd300ed}</Project>
-      <Name>NorthWindAzureSqlClient</Name>
+    <ProjectReference Include="..\DataTableMockedLibrary\DataTableMockedLibrary.vbproj">
+      <Project>{e6ed8100-9309-44b3-988d-20b1f9929063}</Project>
+      <Name>DataTableMockedLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

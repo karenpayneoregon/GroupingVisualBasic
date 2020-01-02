@@ -4,9 +4,10 @@ Public Class Mocked
     Public Function TaxTable() As DataTable
         Dim dt As New DataTable With {.TableName = "TaxDemoTable"}
 
-        dt.Columns.Add(New DataColumn With {.ColumnName = "Identifier", .DataType = GetType(Integer),
-                          .AutoIncrement = True,
-                          .AutoIncrementSeed = 1})
+        dt.Columns.Add(New DataColumn With {
+                          .ColumnName = "Identifier",
+                          .DataType = GetType(Integer),
+                          .AutoIncrement = True, .AutoIncrementSeed = 1})
 
         dt.Columns.Add(New DataColumn With {.ColumnName = "Product", .DataType = GetType(String)})
         dt.Columns.Add(New DataColumn With {.ColumnName = "Tax", .DataType = GetType(Decimal)})
@@ -71,6 +72,13 @@ Public Class Mocked
 
         Next
 
+        For Each group In results
+            Console.WriteLine(group.Serial)
+
+
+        Next
+
+        Console.WriteLine()
     End Sub
     Public Sub Example2()
         Dim dt = New DataTable With {.TableName = "CompanySerialNumber"}
