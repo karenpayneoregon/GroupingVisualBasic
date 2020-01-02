@@ -12,7 +12,8 @@ Module Module1
 
     Sub Main()
 
-        GroupBySinglePropertyLambdaCount()
+        GroupBySinglePropertyLinqCount()
+
 
         Console.ReadLine()
 
@@ -109,7 +110,7 @@ Module Module1
 
         For Each currentItem In queryLastNames
             Console.WriteLine(currentItem.LastName)
-            For Each student As Student In currentItem.StudentGroup
+            For Each student As Student In currentItem.studentGroup
                 Console.WriteLine($"   {student}")
             Next
         Next
@@ -168,15 +169,31 @@ Module Module1
                 Order By LastName
 
 
-        For Each currentItem In queryLastNames
+        'For Each currentItem In queryLastNames
 
-            Console.WriteLine(currentItem.LastName)
+        '    Console.WriteLine(currentItem.LastName)
 
-            For Each student As Student In currentItem.studentGroup
+        '    For Each student As Student In currentItem.studentGroup
+        '        Console.WriteLine($"   {student}")
+        '    Next
+
+        'Next
+
+        'Exit Sub
+
+
+        Dim EnumerationOfStudentContainer As IEnumerable(Of StudentContainer1) =
+                queryLastNames.Select(Function(item) New StudentContainer1 With {
+                                         .LastName = item.LastName,
+                                         .List = item.studentGroup})
+
+        For Each currentItem As StudentContainer1 In EnumerationOfStudentContainer
+            Console.WriteLine($"{currentItem.LastName}")
+            For Each student As Student In currentItem.List
                 Console.WriteLine($"   {student}")
             Next
-
         Next
+
 
     End Sub
 
