@@ -27,15 +27,18 @@ Public Class Form1
 
         ListView1.Items.Clear()
 
-        Dim results As List(Of ProductByCategory) = Await operations.GroupProductByCategoryTask()
-        Console.WriteLine(Now)
-        For Each group As ProductByCategory In results
+        Dim productByCategories As List(Of ProductByCategory) = Await operations.GroupProductByCategoryTask()
+
+        For Each group As ProductByCategory In productByCategories
+
             ListView1.Items.Add(New ListViewItem(group.Category.CategoryName))
+
             For Each product As Product In group.GroupCategoryProducts
                 ListView1.Items.Add(New ListViewItem(New String() {"", product.ProductName}))
             Next
 
             Await Task.Delay(1)
+
         Next
 
         TidyupListView()
@@ -60,13 +63,8 @@ Public Class Form1
         Handles GroupCategorySumUnitsInStockButton.Click
 
         Dim results As List(Of ProductsGroupedSummed) = operations.ProductsGroupedSummed()
-
-        Dim sb As New StringBuilder
-        For Each item As ProductsGroupedSummed In results
-            sb.AppendLine($"{item.Category}, {item.TotalUnitsInStock}")
-        Next
-
-        MessageBox.Show(sb.ToString())
+        Dim form As New GroupSumForm(results)
+        form.ShowDialog()
 
     End Sub
 End Class

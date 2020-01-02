@@ -1,6 +1,8 @@
 # Visual Basic .NET Group by examples
 
-[Article location](https://social.technet.microsoft.com/wiki/contents/articles/53538.introduction-to-grouping-with-linqlambda-vb-net.aspx)
+[Introduction to Grouping with LINQ/Lambda (VB.NET)](https://social.technet.microsoft.com/wiki/contents/articles/53538.introduction-to-grouping-with-linqlambda-vb-net.aspx)
+
+[LINQ/Lambda Group by multiple properties (VB.NET)](https://social.technet.microsoft.com/wiki/contents/articles/53539.linqlambda-group-by-multiple-properties-vb-net.aspx)
 
 ## Note
 - This is a work in progress, many more code samples to follow.

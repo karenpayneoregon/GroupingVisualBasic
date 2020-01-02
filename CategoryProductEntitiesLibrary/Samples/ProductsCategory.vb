@@ -7,16 +7,18 @@ Namespace Samples
 
                 Dim productsGroupedSummedResults As New List(Of ProductsGroupedSummed)
 
-                Dim categories = context.Products.GroupBy(Function(prod) prod.Category).Select(Function(prodGroup) New With {
-                                                                                          Key .Category = prodGroup.Key,
-                                                                                          Key .TotalUnitsInStock = prodGroup.Sum(Function(p) p.UnitsInStock)
-                                                                                          })
+                Dim categories = context.Products.GroupBy(Function(product) product.Category).
+                        Select(Function(productGroup) New With {
+                                  Key .Category = productGroup.Key,
+                                  Key .TotalUnitsInStock = productGroup.Sum(Function(p) p.UnitsInStock)
+                              })
+
                 For Each cat In categories
 
                     productsGroupedSummedResults.Add(New ProductsGroupedSummed With {
-                                           .Category = cat.Category.CategoryName,
-                                           .TotalUnitsInStock = cat.TotalUnitsInStock
-                                           })
+                                   .Category = cat.Category.CategoryName,
+                                   .TotalUnitsInStock = cat.TotalUnitsInStock
+                               })
                 Next
 
 
@@ -65,7 +67,7 @@ Namespace Samples
             Using context As New ProductContext
 
                 Dim results As IQueryable(Of ProductByCategory) =
-                        context.Products.GroupBy(Function(prod) prod.Category).
+                        context.Products.GroupBy(Function(product) product.Category).
                         Select(Function(group) New ProductByCategory With {
                                  .Category = group.Key,
                                  .GroupCategoryProducts = group
@@ -83,11 +85,11 @@ Namespace Samples
 
                 Dim results = Await Task.Run(
                     Function()
-                        ' ReSharper disable once AccessToDisposedClosure
-                        Return context.Products.GroupBy(Function(prod) prod.Category).
+
+                        Return context.Products.GroupBy(Function(product) product.Category).
                                                 Select(Function(group) New ProductByCategory With {
-                                                          .Category = group.Key,
-                                                          .GroupCategoryProducts = group
+                                                              .Category = group.Key,
+                                                              .GroupCategoryProducts = group
                                                           }).
                                                 ToListAsync()
                     End Function)
