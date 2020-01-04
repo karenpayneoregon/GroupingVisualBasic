@@ -31,6 +31,10 @@ Module Module1
         Next
 
         Console.ReadLine()
+        Console.Clear()
+
+        operations.Example4a()
+        Console.ReadLine()
 
     End Sub
 
