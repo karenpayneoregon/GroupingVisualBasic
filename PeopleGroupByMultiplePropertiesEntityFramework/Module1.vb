@@ -31,6 +31,26 @@ Module Module1
         End Using
 
     End Sub
+    Sub LinqGroupByCityAndCountry()
+
+
+        Using context As New PeopleContext
+            Dim personList = context.People.ToList()
+
+            Dim groupResults = (
+                    From person In personList
+                    Group By personCityCountry = New With {
+                        Key .City = person.City,
+                        Key .Country = person.Country} Into group = Group
+                    Select New PersonGroup With {
+                        .City = personCityCountry.City,
+                        .Country = personCityCountry.Country,
+                        .List = group.ToList()
+                    }).ToList()
+
+        End Using
+
+    End Sub
     Sub GroupByCityCountry()
         Using context As New PeopleContext
 

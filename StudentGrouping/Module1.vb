@@ -94,6 +94,8 @@ Module Module1
         Next
 
     End Sub
+
+
     ''' <summary>
     ''' The following example shows how to group source elements by using a single property, LastName then
     ''' perform an Order By on LastName
