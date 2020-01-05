@@ -14,7 +14,7 @@ Module Module1
             For Each current As CustomerOrder In results
 
                 Console.ForegroundColor = ConsoleColor.Green
-                Console.WriteLine($"{current.Customer.CompanyName}")
+                Console.WriteLine($"{current.Customer.CompanyName} - {current.Customer.Contact.FullName}")
                 Console.ForegroundColor = standardColor
 
                 For Each order As Order In current.Order

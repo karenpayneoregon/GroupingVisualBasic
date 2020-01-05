@@ -21,11 +21,9 @@ Public Class NorthOperations
 
         '
         ' Note to use Include the following Import is needed
-        '   Imports System.Data.Entity
+        '   Imports System.Data.Entity 
         '
-        Dim source As List(Of CustomerOrder) = context.Customers.
-                Include(Function(customer) customer.Contact).
-                Include(Function(customer) customer.Contact).
+        Dim results As List(Of CustomerOrder) = context.CustomerIncludes().
                 Where(Function(customer) customer.CompanyName.StartsWith(startsWithValue)).
                 GroupJoin(context.Orders, Function(c) c.CustomerIdentifier,
                           Function(order) order.CustomerIdentifier,
@@ -37,8 +35,7 @@ Public Class NorthOperations
                           .Order = customerData.Order}).
                 ToList()
 
-        Return source
-
+        Return results
 
     End Function
 End Class

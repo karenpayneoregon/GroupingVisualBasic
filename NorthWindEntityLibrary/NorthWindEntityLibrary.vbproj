@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CustomerOrder.vb" />
+    <Compile Include="LanguageExtensions.vb" />
     <Compile Include="Models\Category.vb" />
     <Compile Include="Models\Contact.vb" />
     <Compile Include="Models\ContactType.vb" />
@@ -104,6 +105,7 @@
     <Compile Include="Models\Product.vb" />
     <Compile Include="Models\Shipper.vb" />
     <Compile Include="Models\Supplier.vb" />
+    <Compile Include="PartialClasses\Contact.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
