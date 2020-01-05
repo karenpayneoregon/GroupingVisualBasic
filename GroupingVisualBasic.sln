@@ -19,7 +19,9 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SqlServerHelpers", "SqlServ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8F3634C7-D165-4E82-8A04-CDCC341394D5}"
 	ProjectSection(SolutionItems) = preProject
-		DataScript.sql = DataScript.sql
+		ExampleDatabase.sql = ExampleDatabase.sql
+		NorthWindAzure.sql = NorthWindAzure.sql
+		NorthWindAzureInserts.sql = NorthWindAzureInserts.sql
 		readme.md = readme.md
 	EndProjectSection
 EndProject
@@ -64,6 +66,10 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NorthEntityConsole", "NorthEntityConsole\NorthEntityConsole.vbproj", "{B43F7FDC-A57F-4614-9FFF-3E00CBB2EF12}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthEntityConsole_cs", "NorthEntityConsole_cs\NorthEntityConsole_cs.csproj", "{7425B155-9437-412E-8A69-0BC427712F54}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PersonEntitiesLibrary", "PersonEntitiesLibrary\PersonEntitiesLibrary.vbproj", "{C5D13790-DF7D-4EAA-8BFC-29BA8D33AD12}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PeopleGroupByMultiplePropertiesEntityFramework", "PeopleGroupByMultiplePropertiesEntityFramework\PeopleGroupByMultiplePropertiesEntityFramework.vbproj", "{E5E2F3CE-F417-40A8-B245-BD16E4AB0F47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -167,6 +173,14 @@ Global
 		{7425B155-9437-412E-8A69-0BC427712F54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7425B155-9437-412E-8A69-0BC427712F54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7425B155-9437-412E-8A69-0BC427712F54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5D13790-DF7D-4EAA-8BFC-29BA8D33AD12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5D13790-DF7D-4EAA-8BFC-29BA8D33AD12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5D13790-DF7D-4EAA-8BFC-29BA8D33AD12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5D13790-DF7D-4EAA-8BFC-29BA8D33AD12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5E2F3CE-F417-40A8-B245-BD16E4AB0F47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5E2F3CE-F417-40A8-B245-BD16E4AB0F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5E2F3CE-F417-40A8-B245-BD16E4AB0F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5E2F3CE-F417-40A8-B245-BD16E4AB0F47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -196,6 +210,8 @@ Global
 		{9F587AF4-3FDA-495B-B50F-EE0A02159EF9} = {9B0E5743-FA64-4CE3-9AC1-BD76F11A6AC1}
 		{B43F7FDC-A57F-4614-9FFF-3E00CBB2EF12} = {C1605F09-8477-4BFF-9B74-F53749676DC1}
 		{7425B155-9437-412E-8A69-0BC427712F54} = {C1605F09-8477-4BFF-9B74-F53749676DC1}
+		{C5D13790-DF7D-4EAA-8BFC-29BA8D33AD12} = {9B0E5743-FA64-4CE3-9AC1-BD76F11A6AC1}
+		{E5E2F3CE-F417-40A8-B245-BD16E4AB0F47} = {C1605F09-8477-4BFF-9B74-F53749676DC1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A5674FB5-E9EA-40F8-93D4-5800A9AFC07A}
