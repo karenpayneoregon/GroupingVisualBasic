@@ -33,7 +33,16 @@ Namespace Classes
 
             Dim personList = People.List()
 
-            Dim groupResults As IEnumerable(Of PersonGroup) = personList.
+            Dim groupResults1 As IEnumerable(Of PersonGroup) = personList.
+                    GroupBy(Function(person) New With {Key person.City}).
+                    Select(Function(dataIGrouping) New PersonGroup With {
+                                  .PersonCount = dataIGrouping.Count(),
+                                  .City = dataIGrouping.Key.City,
+                                  .List = dataIGrouping.ToList()
+                              })
+
+
+            Dim groupResults2 As IEnumerable(Of PersonGroup) = personList.
                     GroupBy(Function(person) New With {Key person.City, Key person.Country}).
                     Select(Function(dataIGrouping) New PersonGroup With {
                               .PersonCount = dataIGrouping.Count(),
@@ -44,18 +53,20 @@ Namespace Classes
 
 
 
-            For Each personGroup As PersonGroup In groupResults
+            For Each personGroup As PersonGroup In groupResults2
                 Console.WriteLine($"{personGroup.City} {personGroup.Country} ({personGroup.PersonCount})")
                 For Each person As Person In personGroup.List
                     Console.WriteLine($"   {person}")
                 Next
             Next
 
+            Dim x = groupResults1
 
-            Return groupResults.ToList()
+            Return groupResults2.ToList()
 
         End Function
         Public Sub Example1SingleGrouping_A()
+
             Dim personList = People.List()
 
             Dim groupResults = From person In personList
@@ -69,7 +80,9 @@ Namespace Classes
                     Console.WriteLine($"   {person}")
                 Next
             Next
+
             Console.WriteLine()
+
         End Sub
         Public Sub ExampleGroupBy_Count_Min_Max()
             Dim personList = People.List1()
@@ -103,11 +116,14 @@ Namespace Classes
         Public Function Example2() As List(Of PersonGroup)
             Dim personList = People.List()
 
-            Return personList.GroupBy(Function(person) New With {Key person.City, Key person.Country}).
+            Dim groupResults = personList.GroupBy(Function(person) New With {Key person.City, Key person.Country}).
                 Where(Function(grp) grp.Count() > 1).
                 Select(Function(grp) New PersonGroup With {
-                          .City = grp.Key.City, .Country = grp.Key.Country, .List = grp.ToList()}).ToList()
+                          .City = grp.Key.City,
+                          .Country = grp.Key.Country, .List = grp.ToList()
+                          }).ToList()
 
+            Return groupResults
 
         End Function
         ''' <summary>

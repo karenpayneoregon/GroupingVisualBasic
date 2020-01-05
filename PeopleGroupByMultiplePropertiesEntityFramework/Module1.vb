@@ -4,6 +4,7 @@ Imports PersonEntitiesLibrary
 Module Module1
 
     Sub Main()
+
         Console.ReadLine()
     End Sub
     ''' <summary>
@@ -56,17 +57,17 @@ Module Module1
         End Using
 
     End Sub
-    Sub MinMaxCount()
+    Sub MinMaxCountForAgeProperty()
         Using context As New PeopleContext
             Dim people = context.People.ToList()
             Dim query = people.GroupBy(
                 Function(person) Math.Floor(person.Age),
                 Function(person) person.Age,
                 Function(baseAge, ages) New With {
-                                          .Key = baseAge,
-                                          .Count = ages.Count(),
-                                          .Min = ages.Min(),
-                                          .Max = ages.Max()}
+                          .Key = baseAge,
+                          .Count = ages.Count(),
+                          .Min = ages.Min(),
+                          .Max = ages.Max()}
                 )
 
 
@@ -85,21 +86,21 @@ Module Module1
 
     End Sub
     ''' <summary>
-    ''' This method groups by FirstName only
+    ''' group by age and sex, two versions
     ''' </summary>
-    Sub GroupByFirstName()
+    Sub GroupByAgeAndSex()
         Using context As New PeopleContext
 
             Dim personList = context.People.ToList()
             Dim results = personList.GroupBy(
                 Function(person)
                     Return New With {
-                        Key .Age = person.Age, 
+                        Key .Age = person.Age,
                         Key .Sex = person.Sex}
                 End Function).
                     Select(Function(grouping) New With {
-                              .Item = grouping.Key,
-                              .PeopleList = grouping.ToList()
+                                  .Item = grouping.Key,
+                                  .PeopleList = grouping.ToList()
                               })
 
 
@@ -115,7 +116,18 @@ Module Module1
                 Console.WriteLine()
 
             Next
+
+
+            Dim groupResults = context.People.
+                    GroupBy(Function(person) New With {Key person.Age, Key person.Sex}).
+                    Select(Function(dataIGrouping) New With {
+                                  .PersonCount = dataIGrouping.Count(),
+                                  .City = dataIGrouping.Key.Age,
+                                  .Country = dataIGrouping.Key.Sex,
+                                  .List = dataIGrouping.ToList()
+                              })
         End Using
 
     End Sub
+
 End Module
