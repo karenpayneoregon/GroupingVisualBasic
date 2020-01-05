@@ -13,7 +13,9 @@ Module Module1
         Console.ForegroundColor = standardColor
 
         Dim operations = New PersonGroupByMultipleProperties
+
         operations.Example1()
+
 
         Console.WriteLine()
 
@@ -25,7 +27,7 @@ Module Module1
 
         For Each personGroup As PersonGroup In result
             Console.WriteLine(personGroup)
-            For Each person As Person In personGroup.Grouping
+            For Each person As Person In personGroup.List
                 Console.WriteLine($"    {person.Id} - {person.FirstName} {person.LastName}")
             Next
         Next

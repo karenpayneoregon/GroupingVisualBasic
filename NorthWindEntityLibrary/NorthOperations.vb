@@ -10,20 +10,23 @@ Public Class NorthOperations
     ''' Example of a GroupJoin on customers/order where customer name begins with
     ''' a single character specified in firstCharacter parameter
     ''' </summary>
-    ''' <param name="context"></param>
-    ''' <param name="firstCharacter"></param>
+    ''' <param name="context">Active NorthWindContext context</param>
+    ''' <param name="startsWithValue"></param>
     ''' <returns>List(Of CustomerOrder)</returns>
     Public Function GroupJoinCustomersWithCompanyNameStartsWith(
         context As NorthWindContext,
-        firstCharacter As String) As List(Of CustomerOrder)
+        startsWithValue As String) As List(Of CustomerOrder)
 
         context.Configuration.LazyLoadingEnabled = True
 
-
+        '
+        ' Note to use Include the following Import is needed
+        '   Imports System.Data.Entity
+        '
         Dim source As List(Of CustomerOrder) = context.Customers.
                 Include(Function(customer) customer.Contact).
                 Include(Function(customer) customer.Contact).
-                Where(Function(customer) customer.CompanyName.StartsWith(firstCharacter)).
+                Where(Function(customer) customer.CompanyName.StartsWith(startsWithValue)).
                 GroupJoin(context.Orders, Function(c) c.CustomerIdentifier,
                           Function(order) order.CustomerIdentifier,
                           Function(customer, order) New With {
