@@ -63,7 +63,7 @@ Public Class NorthOperations
 
     End Sub
     ''' <summary>
-    ''' https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/linq/group-elements-in-a-sequence
+    ''' Example for max orders by county with three versions
     ''' </summary>
     ''' <param name="context"></param>
     ''' <remarks>
@@ -93,11 +93,12 @@ Public Class NorthOperations
         Dim maximumOrdersByCountry1 =
                 From customer In context.Customers
                 Group customer By customer.Country Into grouping = Group
-                Select Country.Name, MaxOrders = grouping.Max(Function(x) x.Orders.Count)
+                Select
+                    Country.Name,
+                    MaxOrders = grouping.Max(Function(x) x.Orders.Count)
+
 
         Dim results1 = maximumOrdersByCountry1.ToList()
-
-
 
         '
         ' Final attempt is strong typed
@@ -105,7 +106,10 @@ Public Class NorthOperations
         Dim maximumOrdersByCountry3 =
                 From customer In context.Customers
                 Group customer By customer.Country Into grouping = Group
-                Select New CustomerMaxOrder With {.Country = Country.Name, .MaxOrders = grouping.Max(Function(x) x.Orders.Count)}
+                Select New CustomerMaxOrder With {
+                    .Country = Country.Name,
+                    .MaxOrders = grouping.Max(Function(x) x.Orders.Count)
+                }
 
         Dim results3 As List(Of CustomerMaxOrder) = maximumOrdersByCountry3.ToList()
         Console.WriteLine()
