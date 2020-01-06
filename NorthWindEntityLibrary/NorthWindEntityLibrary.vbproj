@@ -74,7 +74,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CityAverage.vb" />
     <Compile Include="Classes\CustomerOrder.vb" />
+    <Compile Include="Classes\CustomerMaxOrder.vb" />
     <Compile Include="LanguageExtensions.vb" />
     <Compile Include="Models\Category.vb" />
     <Compile Include="Models\Contact.vb" />

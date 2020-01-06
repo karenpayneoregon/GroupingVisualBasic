@@ -14,7 +14,7 @@ Module Module1
 
         Dim operations = New PersonGroupByMultipleProperties
 
-        operations.Example1()
+        operations.LambdaGroupByCityCountryAnonymous()
 
 
         Console.WriteLine()
@@ -23,7 +23,7 @@ Module Module1
         Console.WriteLine("Strongly typed")
         Console.ForegroundColor = standardColor
 
-        Dim result = operations.Example2()
+        Dim result = operations.LambdaGroupByCityCountry()
 
         For Each personGroup As PersonGroup In result
             Console.WriteLine(personGroup)
@@ -35,7 +35,7 @@ Module Module1
         Console.ReadLine()
         Console.Clear()
 
-        operations.Example4a()
+        operations.LamdbaGroupByAgeAndSex()
         Console.ReadLine()
 
     End Sub

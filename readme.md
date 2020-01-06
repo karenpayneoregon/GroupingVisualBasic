@@ -4,6 +4,11 @@
 
 [LINQ/Lambda Group by multiple properties (VB.NET)](https://social.technet.microsoft.com/wiki/contents/articles/53539.linqlambda-group-by-multiple-properties-vb-net.aspx)
 
+#### Microsoft notice
+ 
+> There are several code samples which are based off Microsoft code samples from the Microsoft docs site where the author of this article has been granted permission to use along with placing a copyright notice with those code samples.
+
+
 ## Note
 - This is a work in progress, many more code samples to follow.
 - In some cases mirror examples will be done, one for anonymous type result set, another for strongly typed result set.

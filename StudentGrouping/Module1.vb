@@ -66,10 +66,10 @@ Module Module1
 
         For Each outerGrouping In queryNestedGroups
 
-            Dim currentStudent As New StudentGroup With {.Year = outerGrouping.Year, .ItemGroup = New List(Of ItemGroup)()}
+            Dim currentStudent As New StudentGroup With {.Year = outerGrouping.Year, .ItemGroup = New List(Of StudentItemGroup)()}
 
             For Each innerGrouping In outerGrouping.Group
-                currentStudent.ItemGroup.Add(New ItemGroup() With {.LastName = innerGrouping.LastName, .Students = innerGrouping.Group})
+                currentStudent.ItemGroup.Add(New StudentItemGroup() With {.LastName = innerGrouping.LastName, .Students = innerGrouping.Group})
             Next
 
             studentGroup.Add(currentStudent)
@@ -81,7 +81,7 @@ Module Module1
 
             Console.WriteLine($"{studentGrouping.Year}")
 
-            For Each itemGroup As ItemGroup In studentGrouping.ItemGroup
+            For Each itemGroup As StudentItemGroup In studentGrouping.ItemGroup
 
                 Console.WriteLine($"   {itemGroup.LastName}")
 

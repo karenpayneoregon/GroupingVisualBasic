@@ -35,6 +35,7 @@ Module Module1
 
 
         Using context As New PeopleContext
+
             Dim personList = context.People.ToList()
 
             Dim groupResults = (
@@ -42,6 +43,7 @@ Module Module1
                     Group By personCityCountry = New With {
                         Key .City = person.City,
                         Key .Country = person.Country} Into group = Group
+                    Where group.Count() > 1
                     Select New PersonGroup With {
                         .City = personCityCountry.City,
                         .Country = personCityCountry.Country,
@@ -51,6 +53,7 @@ Module Module1
         End Using
 
     End Sub
+
     Sub GroupByCityCountry()
         Using context As New PeopleContext
 

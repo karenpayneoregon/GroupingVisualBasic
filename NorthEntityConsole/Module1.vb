@@ -5,11 +5,26 @@ Imports NorthWindEntityLibrary.Models
 Module Module1
     Private operation As New NorthOperations
     Sub Main()
+
         Dim standardColor = Console.ForegroundColor
 
         Using context = New NorthWindContext
 
-            Dim results As List(Of CustomerOrder) = operation.GroupJoinCustomersWithCompanyNameStartsWith(context, "A")
+            operation.MaxOrdersByCountry(context)
+
+
+        End Using
+
+        Console.ReadLine()
+
+    End Sub
+    Public Sub GroupJoinCustomersWithCompanyNameStartsWith()
+        Dim standardColor = Console.ForegroundColor
+
+        Using context = New NorthWindContext
+
+            Dim results As List(Of CustomerOrder) =
+                    operation.GroupJoinCustomersWithCompanyNameStartsWith(context, "A")
 
             For Each current As CustomerOrder In results
 
@@ -27,12 +42,13 @@ Module Module1
                         Console.WriteLine($"      {orderDetail.Product.ProductName}, {orderDetail.Quantity}")
                     Next
                 Next
+
                 Console.WriteLine()
+
             Next
 
         End Using
 
-        Console.ReadLine()
     End Sub
 
 End Module

@@ -13,9 +13,7 @@ Public Class NorthOperations
     ''' <param name="context">Active NorthWindContext context</param>
     ''' <param name="startsWithValue"></param>
     ''' <returns>List(Of CustomerOrder)</returns>
-    Public Function GroupJoinCustomersWithCompanyNameStartsWith(
-        context As NorthWindContext,
-        startsWithValue As String) As List(Of CustomerOrder)
+    Public Function GroupJoinCustomersWithCompanyNameStartsWith(context As NorthWindContext, startsWithValue As String) As List(Of CustomerOrder)
 
         context.Configuration.LazyLoadingEnabled = True
 
@@ -38,4 +36,80 @@ Public Class NorthOperations
         Return results
 
     End Function
+    ''' <summary>
+    ''' Get average order count for all cities
+    ''' </summary>
+    ''' <param name="context">NorthWindContext in using statement</param>
+    ''' <remarks>
+    ''' Modified from Microsoft code sample
+    ''' https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/language-features/linq/how-to-count-sum-or-average-data-by-using-linq
+    ''' </remarks>
+    Public Sub AverageCustomersByCity(context As NorthWindContext)
+
+        Dim averageCustomersByCity = From customer In context.Customers
+                                     Group By customer.City
+                                     Into Average(customer.Orders.Count)
+                                     Order By Average
+
+        ' create a result set that can be used in the caller
+        ' where the caller must use .ToList or First etc to execute
+        Dim results As IQueryable(Of CityAverage) =
+                averageCustomersByCity.Select(
+                    Function(item) New CityAverage With {
+                                                 .City = item.City,
+                                                 .Average = item.Average
+                                                 })
+
+
+    End Sub
+    ''' <summary>
+    ''' https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/linq/group-elements-in-a-sequence
+    ''' </summary>
+    ''' <param name="context"></param>
+    ''' <remarks>
+    ''' Modified from Microsoft code sample
+    ''' https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/language-features/linq/how-to-find-the-minimum-or-maximum-value-in-a-query-result
+    ''' </remarks>
+    Public Sub MaxOrdersByCountry(context As NorthWindContext)
+
+        '
+        ' This attempt brings across too much information e.g. the entire Country data
+        '
+        Dim maximumOrdersByCountry =
+                From customer In context.Customers
+                Group By customer.Country
+                Into MaxOrders = Max(customer.Orders.Count)
+
+        Dim results = maximumOrdersByCountry.ToList()
+
+        For Each item In results
+            Console.WriteLine($"{item.Country.Name} - {item.MaxOrders}")
+        Next
+
+
+        '
+        ' This attempt does not bring country data, results are anonymous 
+        '
+        Dim maximumOrdersByCountry1 =
+                From customer In context.Customers
+                Group customer By customer.Country Into grouping = Group
+                Select Country.Name, MaxOrders = grouping.Max(Function(x) x.Orders.Count)
+
+        Dim results1 = maximumOrdersByCountry1.ToList()
+
+
+
+        '
+        ' Final attempt is strong typed
+        '
+        Dim maximumOrdersByCountry3 =
+                From customer In context.Customers
+                Group customer By customer.Country Into grouping = Group
+                Select New CustomerMaxOrder With {.Country = Country.Name, .MaxOrders = grouping.Max(Function(x) x.Orders.Count)}
+
+        Dim results3 As List(Of CustomerMaxOrder) = maximumOrdersByCountry3.ToList()
+        Console.WriteLine()
+
+    End Sub
+
 End Class

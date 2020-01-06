@@ -2,7 +2,7 @@
 
 Namespace GroupingClasses
 
-    Public Class ItemGroup
+    Public Class StudentItemGroup
         Public Property LastName() As String
         Public Property Students() As IEnumerable(Of Student)
 

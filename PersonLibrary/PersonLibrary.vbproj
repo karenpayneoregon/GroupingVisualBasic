@@ -78,6 +78,7 @@
     <Compile Include="Classes\EmployeeGroup.vb" />
     <Compile Include="Classes\Employees.vb" />
     <Compile Include="Classes\People.vb" />
+    <Compile Include="Classes\PeopleGroupedByAgeGender.vb" />
     <Compile Include="Classes\PersonGroup.vb" />
     <Compile Include="Classes\PersonGroupByMultipleProperties.vb" />
     <Compile Include="Classes\Students.vb" />
