@@ -115,5 +115,31 @@ Public Class NorthOperations
         Console.WriteLine()
 
     End Sub
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="north"></param>
+    Public Sub ThreeTablesGrouping(north As NorthWindContext)
+
+        Dim query = From order In north.Orders
+                    From customer In north.Customers.
+                        Where(Function(customer) CBool(customer.CustomerIdentifier = order.CustomerIdentifier)).DefaultIfEmpty()
+                    From orderDetail In north.OrderDetails.Where(Function(d) d.OrderID = order.OrderID).DefaultIfEmpty()
+                    Group New With {
+                    Key .order = order,
+                    Key .customer = customer,
+                    Key .details = orderDetail
+                    } By GroupKey = New With {Key order.OrderDate.Value.Year, Key customer.CompanyName
+                    } Into group = Group
+                    Select New With {
+                        Key .Company = GroupKey.CompanyName,
+                        Key .OrderYear = GroupKey.Year,
+                        Key .Amount = group.Sum(Function(order) order.details.UnitPrice * order.details.Quantity)
+                    }
+
+        Dim queryResults = query.ToList()
+        Console.WriteLine()
+
+    End Sub
 
 End Class

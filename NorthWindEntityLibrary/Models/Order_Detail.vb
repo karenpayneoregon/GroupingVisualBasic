@@ -19,7 +19,7 @@ Namespace Models
         Public Property ProductID As Integer
 
         <Column(TypeName:="money")>
-        Public Property UnitPrice As Decimal
+        Public Property UnitPrice As Decimal?
 
         Public Property Quantity As Short
 

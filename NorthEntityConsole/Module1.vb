@@ -10,7 +10,7 @@ Module Module1
 
         Using context = New NorthWindContext
 
-            operation.MaxOrdersByCountry(context)
+            operation.ThreeTablesGrouping(context)
 
 
         End Using
