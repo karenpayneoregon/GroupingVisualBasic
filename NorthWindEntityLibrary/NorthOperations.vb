@@ -126,10 +126,11 @@ Public Class NorthOperations
                         Where(Function(customer) CBool(customer.CustomerIdentifier = order.CustomerIdentifier)).DefaultIfEmpty()
                     From orderDetail In north.OrderDetails.Where(Function(d) d.OrderID = order.OrderID).DefaultIfEmpty()
                     Group New With {
-                    Key .order = order,
-                    Key .customer = customer,
-                    Key .details = orderDetail
-                    } By GroupKey = New With {Key order.OrderDate.Value.Year, Key customer.CompanyName
+                        Key .order = order,
+                        Key .customer = customer,
+                        Key .details = orderDetail
+                    } By
+                    GroupKey = New With {Key order.OrderDate.Value.Year, Key customer.CompanyName
                     } Into group = Group
                     Select New With {
                         Key .Company = GroupKey.CompanyName,
