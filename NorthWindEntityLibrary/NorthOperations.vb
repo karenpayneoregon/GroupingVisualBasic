@@ -23,7 +23,7 @@ Public Class NorthOperations
         '
         Dim results As List(Of CustomerOrder) = context.CustomerIncludes().
                 Where(Function(customer) customer.CompanyName.StartsWith(startsWithValue)).
-                GroupJoin(context.Orders, Function(c) c.CustomerIdentifier,
+                GroupJoin(context.Orders, Function(customer) customer.CustomerIdentifier,
                           Function(order) order.CustomerIdentifier,
                           Function(customer, order) New With {
                              Key .Customer = customer,
