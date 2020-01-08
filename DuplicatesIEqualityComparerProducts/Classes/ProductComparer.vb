@@ -5,20 +5,22 @@
     Public Class ProductComparer
         Implements IEqualityComparer(Of Product)
 
-        Public Function Equals(x As Product, y As Product) As Boolean Implements IEqualityComparer(Of Product).Equals
+        Public Shadows Function Equals(p1 As Product, p2 As Product) As Boolean _
+            Implements IEqualityComparer(Of Product).Equals
 
-            If ReferenceEquals(x, y) Then
+            If ReferenceEquals(p1, p2) Then
                 Return True
             End If
 
-            If ReferenceEquals(x, Nothing) OrElse ReferenceEquals(y, Nothing) Then
+            If ReferenceEquals(p1, Nothing) OrElse ReferenceEquals(p2, Nothing) Then
                 Return False
             End If
 
-            Return x.Make = y.Make AndAlso x.Model = y.Model
+            Return p1.Make = p2.Make AndAlso p1.Model = p2.Model
 
         End Function
-        Public Function GetHashCode(product As Product) As Integer Implements IEqualityComparer(Of Product).GetHashCode
+        Public Shadows Function GetHashCode(product As Product) As Integer _
+            Implements IEqualityComparer(Of Product).GetHashCode
 
             If ReferenceEquals(product, Nothing) Then
                 Return 0

@@ -8,17 +8,28 @@ Module Module1
     Sub Main()
         Dim productList = Products.List()
 
-        Dim query As IEnumerable(Of Product) =
-                productList.Distinct(New ProductComparer).OrderBy(Function(product) product.Make)
+        Console.WriteLine("Original list")
 
-        For Each product As Product In query
+        productList.ForEach(Sub(product) Console.WriteLine(product))
+
+        Console.WriteLine()
+        Console.WriteLine("ProductComparer results")
+
+        Dim productsQuery As IEnumerable(Of Product) =
+                productList.Distinct(New ProductComparer).
+                OrderBy(Function(product) product.Make)
+
+
+        For Each product As Product In productsQuery
             Console.WriteLine(product)
         Next
 
         Console.WriteLine()
         Console.WriteLine("Group by make")
 
-        Dim grouped As IEnumerable(Of IGrouping(Of String, Product)) = query.GroupBy(Function(product) product.Make)
+        Dim grouped As IEnumerable(Of IGrouping(Of String, Product)) =
+                productsQuery.GroupBy(Function(product) product.Make)
+
         For Each grouping As IGrouping(Of String, Product) In grouped
             Console.WriteLine(grouping.Key)
             For Each product As Product In grouping

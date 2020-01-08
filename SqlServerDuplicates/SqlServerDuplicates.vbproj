@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Classes\Customer.vb" />
     <Compile Include="Classes\CustomerRigger.vb" />
+    <Compile Include="DataAccess.vb" />
     <Compile Include="DataOperations.vb" />
     <Compile Include="DuplicateFinder.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

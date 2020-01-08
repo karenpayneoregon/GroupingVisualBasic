@@ -7,6 +7,7 @@
         Public Property Address As String
         Public Property City As String
         Public Property PostalCode As String
+        Public Property Exists As Boolean
         Public ReadOnly Property ItemArray() As String()
             Get
                 Return {CStr(Identifier).PadLeft(3, "0"c), CompanyName, ContactName, ContactTitle, Address, City, PostalCode}
