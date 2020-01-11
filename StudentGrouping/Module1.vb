@@ -12,7 +12,16 @@ Module Module1
 
     Sub Main()
 
-        GroupBySinglePropertyLinqCount()
+        'GroupBySinglePropertyLinqCount()
+
+        Dim groups = Reflection.Assembly.GetExecutingAssembly().GetReferencedAssemblies().Select(Function(aname) Reflection.Assembly.Load(aname)).SelectMany(Function(asm) asm.GetExportedTypes()).GroupBy(Function(t) t.Namespace).OrderByDescending(Function(g) g.Count()).Take(10)
+
+        For Each group In groups
+            Console.WriteLine("{0} {1}", group.Key, group.Count())
+            For Each type In group
+                Console.WriteLine(vbTab & type.Name)
+            Next
+        Next
 
 
         Console.ReadLine()
