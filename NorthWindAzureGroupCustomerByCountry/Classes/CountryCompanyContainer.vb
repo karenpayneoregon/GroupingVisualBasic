@@ -7,4 +7,5 @@ Namespace Classes
         Public Property Customers As IEnumerable(Of Customer)
         Public Property Count As Integer
     End Class
+
 End Namespace

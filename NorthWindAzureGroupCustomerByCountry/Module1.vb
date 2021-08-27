@@ -92,11 +92,13 @@ Module Module1
         Dim operations = New DataOperations
         Dim customers = operations.CustomerList()
 
+        ' Anonymous, can only be used in this method
         Dim baseQuery =
                 From customer In customers Order By customer.City
                 Group By CountryName = customer.Country Into regionalCustomers = Group
                 Order By CountryName
 
+        ' strong typed, can be used outside this sub when making this method a function
         Dim customersByCountry As IEnumerable(Of CountryCompanyContainer) =
                 baseQuery.Select(Function(customer) New CountryCompanyContainer With {
                                     .CountryName = customer.CountryName,
@@ -113,6 +115,24 @@ Module Module1
 
 
     End Sub
+    Public Function CountryCustomers() As IEnumerable(Of CountryCompanyContainer)
+        Dim operations = New DataOperations
+        Dim customers = operations.CustomerList()
+
+        Dim customersByCountry As IEnumerable(Of CountryCompanyContainer) =
+                (
+                    From customer In customers
+                    Order By customer.City
+                    Group By CountryName = customer.Country Into regionalCustomers =
+                        Group Order By CountryName).Select(Function(customer) New CountryCompanyContainer With {
+                                    .CountryName = customer.CountryName,
+                                    .Customers = customer.regionalCustomers,
+                                    .Count = customer.regionalCustomers.Count()
+                                    })
+
+        Return customersByCountry
+
+    End Function
     ''' <summary>
     ''' Given code from AnonymousToStrongTypedVersion procedure
     ''' above the base query is now simply the starting point
